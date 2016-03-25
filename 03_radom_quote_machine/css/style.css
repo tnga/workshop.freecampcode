@@ -5,6 +5,7 @@
   padding: 0;
   list-style: none;
   vertical-align: baseline;
+  transition: all linear 0.5s ;
 }
 
 div {
@@ -20,11 +21,12 @@ body {
   
   background: linear-gradient(to left, #333, #ddd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: -webkit-linear-gradient(to left, #333, #ddd); /* Chrome 10-25, Safari 5.1-6 */
-  background-size: 400% 400% ;
 }
 
 .footer {
-  width: 450px;
+  width: 60%;
+  max-width: 500px ;
+  min-width: 280px ;
   text-align: center;
   display: block;
   margin: 15px auto 30px auto;
@@ -41,14 +43,16 @@ body {
   border-radius: 3px;
   position: relative;
   margin: 8% auto auto auto;
-  width: 450px;
-  padding: 40px 50px;
+  width: 60%;
+  max-width: 500px ;
+  min-width: 280px ;
+  padding: 30px 50px;
   display: table;
   background-color: #fff;
 }
 .quote-box .quote-text {
   text-align: center;
-  width: 450px;
+  width: 100%;
   height: auto;
   clear: both;
   font-weight: 500;
@@ -60,18 +64,13 @@ body {
   margin-right: 0.4em;
 }
 .quote-box .quote-author {
-  width: 450px;
+  width: 100%;
   height: auto;
   clear: both;
   padding-top: 20px;
   font-size: 1em;
   text-align: right;
   font-family: 'Raleway', 'DejaVu Sans', sans-serif;
-}
-.quote-box .buttons {
-  width: 450px;
-  margin: auto;
-  display: block;
 }
 .quote-box .buttons .button {
   height: 38px;
@@ -83,7 +82,8 @@ body {
   font-size: 0.85em;
   font-family: Ubuntu, 'DejaVu Sans', sans-serif ; 
   padding: 8px 18px 6px 18px;
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   opacity: 1;
   cursor: pointer;
 }
@@ -102,6 +102,12 @@ body {
 }
 .quote-box .buttons .button#new-quote {
   float: right;
+}
+
+.quote-box .buttons {
+  width: 100%;
+  margin: auto;
+  display: block;
 }
 
 #api-info-status {

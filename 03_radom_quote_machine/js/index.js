@@ -12,8 +12,9 @@ function openURL(url){
 }
 function getQuote() {
   
+  $('#api-info-status').css("display", "block");
   $('#api-info-status').html("<i class='fa fa-fire' id='loader' style='font-size:1.5em'></i>");
-  iJS.animate("loader", "flip", 9) ;
+  iJS.animate("loader", "flip", 15) ;
   
   $.ajax({
     headers: {
@@ -42,7 +43,8 @@ function getQuote() {
             opacity: 1
           }, 500);
           $('#text').text(r.quote);
-          iJS.animate($('.quote-box')[0], "bounce") ;
+          iJS.animate($('.quote-box')[0], "fade-in") ;
+          iJS.animate($('.quote-text')[0], "fade-in-down") ;
         });
 
       $(".quote-author").animate({
@@ -57,8 +59,7 @@ function getQuote() {
 
       var color = Math.floor(Math.random() * colors.length);
       $("html body").css({
-        background: "linear-gradient(to left,"+ colors[color][0] +","+ colors[color][1] +")" ,
-        animation: "gradient-animation 30s ease infinite" ,
+        backgroundImage: "linear-gradient(to left,"+ colors[color][0] +","+ colors[color][1] +")",
         color: colors[color][0]
       });
       $(".button").css({
