@@ -1,0 +1,154 @@
+.i-block {
+    
+    width: 60% ;
+    max-width: 800px ;
+    margin: 30px auto ;
+    background-color: white ;
+    background: rgba(255, 255, 255, 0.7) ;
+}
+
+.i-block >figure {
+    
+    height: 250px ;
+    background-color: cyan ;
+    margin: 5px auto 10px auto ;
+    cursor: zoom-in ;
+}
+.i-block >figure >figcaption {
+    
+    background: cyan ;
+    background: rgba(255, 255, 255, 0.5) ;
+    padding: 5px ;
+    text-align: center ;
+    font-size: 0.90em ;
+    text-shadow: 0px 0px 1px cyan ;
+}
+.i-block >figure >button input {
+    
+    display: none ;
+    margin-right: 10px ;
+}
+.i-block >figure >button:hover input, .i-block >figure >button input:focus {
+    
+    display: inline-block ;
+}
+
+#weather-details h4, #weather-details p {
+    
+    text-align: center ;
+    margin-top: 0px ;
+    margin-bottom: 5px ;
+}
+#weather-details >h4 >span, #weather-details >h4 >img {
+    
+    display: inline-block ;
+    margin: 1px 5px ;
+    vertical-align: middle
+}
+#weather-details >p >span {
+    
+    display: inline-block ;
+    margin: 3px 5px ;
+}
+#weather-details >p >span i {
+    
+    color: #903a00 ;
+}
+
+#loader-zone {
+    
+    text-align: center ;
+    font-size: 2em ;
+}
+
+body {
+    
+    background: url(../img/weather_clear_cloud.jpg) no-repeat left fixed ;
+    background-size: cover;
+}
+
+@media (max-width: 640px) {
+    
+    .i-block {
+
+        width: 90% ;
+    }
+}
+
+
+
+/* Take from iJS-ui
+--------------------
+Certains scripts sont utiliser pour générer du code HTML nécessaire pour gérer
+des fonctionnalités de certaines page du site. C'est le cas d'une boite de dialogue
+personnalisée via des scripts.
+*/
+/* début de la déclaration de style pour des éléments HTML généré par des scripts
+----------------------------------------------------------------------------------*/
+#notify-block {
+    padding: 20px 22px 10px 10px;
+    min-height: 30px;
+    min-width: 100px;
+    max-width: 300px;
+    max-height: 100px;
+    z-index: 100;
+    overflow: hidden;
+    font-family: "DejaVu Sans", _DejaVu_Sans, verdana, OpenSans, sans-serif;
+    font-size: 0.9em;
+    border-radius: 7px 0px 0px 7px;
+    box-shadow: -1px 1px 7px rgba(103, 103, 103, 0.7);
+    position: fixed;
+    top: 20%;
+    right: 0px;
+}
+@media (max-width: 800px) {
+    #notify-block {
+        max-width: 200px;
+    }
+}
+#notify-block.notify-normal {
+    background: #f2f2f2;
+    color: #1a1a1a;
+}
+#notify-block.notify-error {
+    background: #f00;
+    color: #fff;
+}
+#notify-block.notify-error .b-dialog-close {
+    background: #fff;
+    color: #f00;
+}
+#notify-block.notify-warring {
+    background: yellow;
+    color: #f00;
+}
+#notify-block.notify-success {
+    background: #f2f2f2;
+    color: #ffa300;
+}
+#notify-block .b-dialog-close {
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    width: 20px;
+    height: 20px;
+    font-size: 9px;
+}
+.b-dialog-close {
+    display: block;
+    background: #f00;
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+    padding: 2px;
+    width: 35px;
+    color: #fff;
+    font-weight: bold;
+    font-family: "DejaVu Sans", _DejaVu_Sans, verdana, OpenSans, sans-serif;
+    font-size: 14px;
+}
+.b-dialog-close:hover {
+    box-shadow: 0px 0px 2px #f00;
+    font-size: 13px;
+    background: #f00;
+}
