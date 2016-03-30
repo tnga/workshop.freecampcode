@@ -12,8 +12,10 @@ $(document).ready( function () {
     .done( function (loc) {
         
         var location = loc ;
+        //ipinfo just provide de country iso code name, so will try to get native country name
         location.countryName = location.country ;
         
+        //try to get native country name. this is usefull to have better result from Flickr API
         $.getJSON( "https://restcountries.eu/rest/v1/name/"+location.country
         )
         .done( function (data) {
@@ -50,6 +52,7 @@ $(document).ready( function () {
         showPictureFromLoacation( this.value ) ;
         showWeatherLocation( this.value ) ;
     }) ;
+    
     $("input[name='fahrenheit']").on("change", function () {
         
         if (this.checked) {
@@ -118,8 +121,8 @@ function showWeatherLocation (place) {
                 _weather.des = data.weather[0].main;
                 _weather.wspeed = data.wind.speed +" m/s";
                 _weather.icon = "http://openweathermap.org/img/w/"+data.weather[0].icon +".png";
-                _weather.sunrise = new Date( data.sys.sunrise*1000 ).getTime() ;
-                _weather.sunset = new Date( data.sys.sunset*1000 ).getTime() ;
+                _weather.sunrise = new Date( data.sys.sunrise*1000 ).getTime() ; //time 100 to get millisecond
+                _weather.sunset = new Date( data.sys.sunset*1000 ).getTime() ; //time 100 to get millisecond
                 _weather.fah = Math.round( ( _weather.temp * 9)/5 + 32 ) +" °F";
 
                 $("#weather-details >h4 >img:first-of-type").attr("src", _weather.icon) ;
@@ -134,6 +137,7 @@ function showWeatherLocation (place) {
                 animateLoader("stop") ;
                 iJS.animate( $(".i-block")[0], "pulse")
                 
+                //change backgound depending of weather's location conditions
                 if (_weather.des.toLocaleLowerCase() == "rain") {
                     
                     $("body").css("background", "url(img/weather_onrain.jpg) no-repeat center fixed") ;
@@ -146,10 +150,10 @@ function showWeatherLocation (place) {
                     
                     $("body").css("background", "url(img/weather_thunderstom.jpg) no-repeat left fixed") ;
                 }
-                else {
+                else { //if weather conditions are good or pretty, change backgound depending of current time (morning, night, ...)
                     
                     var currentTime = new Date().getTime() ;
-                    
+                    //@Note 1 hour = 3600*1000 milliseconds
                     if ((_weather.sunrise - (3600*1000)) <= currentTime && currentTime <= (_weather.sunrise + (2*3600*1000))) {
                         
                         $("body").css("background", "url(img/weather_sunrise.jpg) no-repeat right fixed") ;
@@ -239,6 +243,10 @@ function showPictureFromLoacation (place) {
                     
                     /*disable parent event propagation to search button to avoid conflit*/ 
                     $(".i-block >figure >button").click(function(e) {
+                        e.stopPropagation();
+                    }); 
+                    /*disable parent event propagation to search button to avoid conflit*/ 
+                    $(".i-block >figure >figcaption").click(function(e) {
                         e.stopPropagation();
                     });
                 } 

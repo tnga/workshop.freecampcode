@@ -22,6 +22,7 @@
     text-align: center ;
     font-size: 0.90em ;
     text-shadow: 0px 0px 1px cyan ;
+    cursor: auto ;
 }
 .i-block >figure >button input {
     
