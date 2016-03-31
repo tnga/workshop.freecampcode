@@ -1,8 +1,11 @@
+/* by [tnga](https//github.com/tnga) */
+
 $(document).ready( function () {
     
     showWeatherDetails("hidden") ;
     animateLoader("start") ;
     iJS.animate( $(".i-block>figure>button")[0], "wobble", 13) ;
+    showNotification("<b>note:</b> for any other location, use search button.") ;
     
     var location = {} ;
     
@@ -210,7 +213,7 @@ function showPictureFromLoacation (place) {
             content_type: 1 ,
             per_page: 70 ,
             format: "json" ,
-            nojsoncallback: 1 
+            nojsoncallback: 1
         }
         )
         .done( function (data) {
@@ -252,7 +255,7 @@ function showPictureFromLoacation (place) {
                 } 
                 else {
 
-                    $(".i-block>figure>figcaption").html("<span style='color:#f60'>Humm! Can't get associated picture of your location...</span>") ;
+                    $(".i-block>figure>figcaption").html("<span style='color:red'>Humm! Can't get associated picture of your location...</span>") ;
                 }
             }
             else {
