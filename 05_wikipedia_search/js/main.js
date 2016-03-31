@@ -3,6 +3,7 @@ $(document).ready( function () {
   window.wikiSearcBox = document.getElementById("search-block") ;
   animateLoader("hide") ;
   centerContentPosition() ;
+  iJS.animate(wikiSearcBox, "fade-in-down") ;
   //pour centrer suivant la hauteur le contenu de la boite de dialogue
   $(window).on('resize', centerContentPosition) ;
   
@@ -35,6 +36,7 @@ $(document).ready( function () {
         $("body").css("overflow", "auto") ;
         $("#search-block").css("margin", "0px auto 15px auto") ;
         
+        iJS.animate(wikiSearcBox, "fade-in-down") ;
         isResultMode = true ;
       }
       else {
@@ -45,6 +47,7 @@ $(document).ready( function () {
         
         isResultMode = false ;
         centerContentPosition() ;
+        iJS.animate(wikiSearcBox, "pulse") ;
       }
       
       animateLoader("hide") ;
@@ -59,6 +62,7 @@ $(document).ready( function () {
       
       isResultMode = false ;
       centerContentPosition() ;
+      iJS.animate(wikiSearcBox, "pulse") ;
       
       animateLoader("hide") ;
     });
