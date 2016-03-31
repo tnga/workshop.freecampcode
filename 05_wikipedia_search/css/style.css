@@ -1,0 +1,69 @@
+#search-block {
+  
+  text-align: center ;
+}
+#search-block >h3 {
+  
+  font-size: 2.2em ;
+  font-family: "GE Inspira", _GE_Inspira, Raleway, _Raleway ;
+  letter-spacing: 11px ;
+  margin-top: 0px ;
+  margin-bottom: 15px ;
+  font-weight: normal ;
+}
+#search-block button {
+  
+  min-width: 230px ;
+  width: 70% ;
+  max-width: 500px ;
+}
+#search-block button i {
+  
+  font-size: 1.3em ;
+}
+#search-block button input[type="search"] {
+  
+  margin-right: 10px ;
+  margin-left: 0px ;
+  min-width: 175px ;
+  width: 90% ;
+  max-width: 445px ;
+}
+#search-block #search-alert {
+
+  color: red ;
+  display: none ;
+  margin-top: 10px ;
+}
+#search-block #loader-zone {
+
+  text-align: center ;
+  font-size: 2em ;
+}
+#search-block select {
+
+  width: 120px ;
+}
+
+#search-results >a >h4{
+  
+  margin-top: 0px ;
+} 
+#search-results >a {
+  
+  text-decoration: none ;
+} 
+#search-results >a >span {
+  
+  color: black ;
+  font-family: "DejaVu Sans", _DejaVu_Sans, verdana, OpenSans, sans-serif ;
+} 
+#search-results >a:hover {
+  
+  border-left: 3px solid #f60 ;
+}
+
+html, body {
+  
+  height: 100% ;
+}

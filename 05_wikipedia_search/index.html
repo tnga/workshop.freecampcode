@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html>
+ 
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="freeCodeCamp Wikipedia search challenge">
+    <meta name="author" content="Tindo Ngoufo Arsel">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Wikipedia search | tnga</title>
+    
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/iui/0.0/iui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  
+  <body>
+    
+    <div id="i-main-block">
+     
+      <div class="i-block" id="search-block">
+        <h3><i class="fa fa-wikipedia-w"></i>-wikisearch</h3>
+        
+        <div id="loader-zone"><i class="fa fa-fire"></i></div>
+        
+        <button><input type="search" name="wiki-search"><i class="fa fa-search"></i></button>
+        <br/>
+        <select>
+          <option value="en">english</option>
+          <option value="fr">français</option>
+          <option value="it">italiano</option>
+          <option value="es">espagñol</option>
+          <option value="de">deutsch</option>
+          <option value="pt">português</option>
+          <option value="ru">русский</option>
+          <option value="zh">中国</option>
+          <option value="ja">日本の</option>
+          <option value="hi">भारतीय</option>
+        </select>
+        <a target="_blank" href="http://en.wikipedia.org/wiki/Special:Random">random article</a>
+        
+        <div id="search-alert"></div>
+      </div>
+      
+      <div id="search-results">
+        
+      </div>
+      
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/ijs/partials/i_core.min.js"></script>
+    <script src="bower_components/ijs/partials/i_animation.min.js"></script>
+    
+    <script src="js/main.js"></script>
+    
+  </body>
+  
+</html>
