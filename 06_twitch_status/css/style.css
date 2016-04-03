@@ -1,0 +1,90 @@
+#display figure {
+ 
+  max-height: 450px ;
+  min-height: 200px ;
+  overflow: hidden ;
+  position: relative ;
+  cursor: pointer ;
+}
+#display figure >img {
+  
+  display: block;
+  width: 100%;
+  height: auto ;
+  max-height: 300px ;
+  margin-bottom: 0px ;
+}
+#display figure >span:first-of-type {
+  
+  color: white ;
+  padding: 3px 5px ;
+  border-radius: 3px ;
+}
+#display figure >span:last-of-type {
+  
+  padding: 5px 3px ;
+  display: block ;
+  position: absolute ;
+  top: 20% ;
+  min-width: 50% ;
+  max-width: 75% ;
+  font-size: 0.8em ;
+  background-color: white ;
+  background-color: rgba(255, 255, 255, 0.7) ;
+  border-radius: 0px 3px 3px 0px ;
+}
+#display figure.online >span:first-of-type {
+  
+  background: #009700 ;
+}
+#display figure.offline >span:first-of-type {
+  
+  background: #777777 ;
+}
+#display figure figcaption >a h4 {
+  
+  margin-top: 0px ;
+  margin-bottom: -5px ;
+}
+#display figure figcaption >div >span:last-of-type {
+  
+  font-size: 0.8em ;
+  display: inline-block;
+  max-width: 95% ;
+}
+#display figure >span:last-of-type, #display figure figcaption >div >span:last-of-type {
+  
+  overflow: hidden ;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.no-display {
+  
+  display: none ;
+}
+
+h3.i-block {
+  
+  margin-top: 0px ;
+}
+h3.i-block small {
+  
+  display: inline-block ;
+}
+
+
+@media (max-width: 800px) {
+  
+  .col-1-of-4 {
+    
+    width: 48%;
+  }
+}
+@media (max-width: 480px) {
+  
+  .col-1-of-4 {
+    
+    width: 98%;
+  }
+}

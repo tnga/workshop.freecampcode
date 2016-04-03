@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="freeCodeCamp twitch-status challenge">
+    <meta name="author" content="Tindo Ngoufo Arsel">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>twitch-status | tnga</title>
+
+    <link rel="stylesheet" href="lib/iui/0.0/iui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+
+    <div id="i-main-block">
+      
+      <h3 class="i-block sb-style">
+        <span>TWITCH STREAMERS</span>
+        <small>
+          <label><input type="radio" name="status" value="all" checked /> all</label>
+          <label><input type="radio" name="status" value="offline" /> offline</label>
+          <label><input type="radio" name="status" value="online" /> online</label>
+        </small>
+      </h3>
+      
+      <div class="i-block i-grid" id="display">
+        
+      </div>
+
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/ijs/partials/i_core.min.js"></script>
+    <script src="bower_components/ijs/partials/i_animation.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+  </body>
+
+</html>
