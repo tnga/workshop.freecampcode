@@ -7,3 +7,6 @@
  - [Tribute page](http://codepen.io/tnga/full/pybdeQ/) | topic: Linux Benedict Torvalds
  - [Personal Portfolio](http://codepen.io/tnga/full/QNKMdR/)
  - [Random Quote Machine](http://codepen.io/tnga/full/jqwqvR/)
+ - [Weather App](http://codepen.io/tnga/full/NNvwzZ/)
+ - [Wikipedia search](http://codepen.io/tnga/full/YqrzQE/)
+ - [Twitch.tv Status](http://codepen.io/tnga/full/wGrQNN)
