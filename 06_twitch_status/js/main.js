@@ -53,7 +53,11 @@ function getChannelInfo() {
         $(".online, .offline").on("click", function () {
           
           document.location.href = this.childNodes[3].firstElementChild.href ;
-        })
+        }) ;
+
+        $(".online >figcaption a, .offline >figcaption a").click( function(e) {
+          e.stopPropagation();
+        });
         
         console.log( data ) ;
       });
