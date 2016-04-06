@@ -1,0 +1,47 @@
+#display {
+ 
+  max-width: 400px ;
+  margin: auto ;
+}
+#display >.buttons button {
+ 
+  padding: 10px 5px ;
+}
+#display >input[type="textbox"] {
+ 
+  text-align: right ;
+}
+#display >.i-grid .grid {
+ /*fix for lib-iui (0.0) yet unstable grid system*/
+  margin-right: 0.1%;
+  margin-left: 0.1%;
+}
+
+/*@NOTE missing in lib-iui (0.0) yet unstable grid system*/
+input[type="textbox"], input[type="textbox"][readonly], 
+input[type="textbox"][readonly]:hover, input[type="textbox"][readonly]:focus {
+  font-family: "DejaVu Sans", _DejaVu_Sans, verdana, OpenSans, sans-serif;
+  border: 1px solid #adadad;
+  border-radius: 0;
+  box-shadow: 1px 1px 4px rgba(103, 103, 103, 0.7) inset;
+  padding: 7px;
+  margin: 3px;
+  color: #2d2d2d;
+  font-size: 0.91em;
+  /*width: 230px;*/
+  background: #fff;
+  box-sizing: border-box;
+  vertical-align: middle;
+  outline: 0;
+}
+
+h1, h2, h3, h4 {
+  
+  font-family: "GE Inspira", _GE_Inspira, verdana, sans-serif;
+  margin-top: 0px ;
+}
+
+html, body {
+
+  height: 100% ;
+}
