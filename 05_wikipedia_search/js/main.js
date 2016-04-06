@@ -117,6 +117,7 @@ function centerContentPosition () {
 
       wikiSearcBox.offsetHeight = (maxDSHeight >= 100) ? maxDSHeight + "px" : "100px" ;
       wikiSearcBox.style.margin = "5% auto" ;
+      document.body.style.overflow = "auto" ; //just for design, not really needed.
 
     } else {
 
