@@ -11,7 +11,7 @@ $(document).ready( function () {
   $("button").click( function () {
     
     var text = $(this).attr("value");
-    if (parseInt(text, 10) == text || text === "." || text === "/" || text === "*" || text === "-" || text === "+" || text === "%") {
+    if (parseInt(text, 10) == text || text === "(" || text === ")" || text === "." || text === "/" || text === "*" || text === "-" || text === "+" || text === "%") {
       if (clear === false) {
         calc += text;
       } 

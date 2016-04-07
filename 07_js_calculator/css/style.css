@@ -1,6 +1,6 @@
 #display {
  
-  max-width: 400px ;
+  max-width: 380px ;
   margin: auto ;
 }
 #display >.buttons button {
@@ -10,6 +10,8 @@
 #display >input[type="textbox"] {
  
   text-align: right ;
+  padding: 10px 7px;
+  font-size: 0.95em;
 }
 #display >.i-grid .grid {
  /*fix for lib-iui (0.0) yet unstable grid system*/
@@ -37,7 +39,7 @@ input[type="textbox"][readonly]:hover, input[type="textbox"][readonly]:focus {
 
 h1, h2, h3, h4 {
   
-  font-family: "GE Inspira", _GE_Inspira, verdana, sans-serif;
+  font-family: "Andale Mono", _Andale_Mono, verdana, sans-serif;
   margin-top: 0px ;
 }
 
