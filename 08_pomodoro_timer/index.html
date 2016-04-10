@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="freeCodeCamp pomodoro timer challenge">
+    <meta name="author" content="Tindo Ngoufo Arsel">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>pomodoro-timer | tnga</title>
+
+    <link rel="stylesheet" href="lib/iui/0.0/iui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+
+    <div id="i-main-block">
+      
+      <div class ="i-block" id="pomodoro">
+        <div class="session-ctrl">
+          <h5>session length</h5>
+          <button onclick="sessionLengthChange(-1)">-</button>
+          <input type="text" id="session-time" value="00" />
+          <button onclick="sessionLengthChange(1)">+</button>
+        </div>
+        
+        <button class="" id="display">
+          <h3>session</h3>
+          <div id="i-progress-bar">
+            <div class="progress" id="i-progress"><span class="i-btn"></span></div>
+          </div>
+          
+          <br/>
+          <big>
+            <span id="dis-day">0d</span> <span id="dis-hour">00 : </span>
+            <span id="dis-min">00</span> : <span id="dis-sec">00</span>
+          </big>  
+          <br/>
+          <br/>
+          <small><span id="dis-milsec">00</span></small>  
+        </button>
+        
+        <div class="break-ctrl">
+          <h5>break length</h5>
+          <button onclick="breakLengthChange(-1)">-</button>
+          <input type="text" id="break-time" value="00" />
+          <button onclick="breakLengthChange(1)">+</button>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/ijs/partials/i_core.min.js"></script>
+    <script src="bower_components/ijs/partials/i_animation.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+  </body>
+
+</html>
