@@ -1,0 +1,129 @@
+#display {
+ 
+  height: 200px ;
+  width: 200px ;
+  position: relative ;
+  margin: 150px auto 120px auto ;
+  /*background-color: white ;*/
+}
+#display button:not(.hovered):hover {
+
+  background-color: #2d2d2d;
+  background-image: linear-gradient(to top, #2d2d2d, #474747, #535353);
+}
+#display #bs-2, #display #bs-1, #display #bs-0, #display #bs-3 {
+ 
+  height: 180px ;
+  width: 180px ;
+  /*visibility: hidden ;*/
+}
+#display #board, #display #bs-2, #display #bs-1, #display #bs-0, #display #bs-3 {
+ 
+  border-radius: 50% ;
+  position: absolute ;
+}
+#display #bs-2 {
+ 
+  left: -120px ;
+}
+#display #bs-1 {
+ 
+  right: -110px ;
+}
+#display #bs-0 {
+ 
+  top: -120px ;
+}
+#display #bs-3 {
+ 
+  bottom: -115px ;
+}
+#display #board {
+
+  height: 150px ;
+  width: 150px ;
+  top: -25px ;
+  left: -5px ;
+}
+#display #board >center >b {
+
+  padding: 5px ;
+}
+#display #board >center >b >span {
+
+  font-size: 1.3em ;
+}
+#display #board >center >b:first-of-type {
+
+  color: gray ;
+}
+
+#display #info-winner {
+
+  color: #f60 ;
+  font-weight: bolder ;
+}
+
+
+#footer >center >h3 {
+  
+  margin-top: 0px ;
+  font-size: 1.3em ;
+  letter-spacing: 10px ;
+  font-family: "GE Inspira", _GE_Inspira ;
+}
+
+.i-block {
+  
+  background-color: white;
+}
+
+.unclickable {
+  pointer-events: none ;
+}
+
+body {
+  
+  background-color: #fbfbfb;
+}
+
+@media (max-width: 430px) {
+  
+  #display {
+
+    height: 180px ;
+    width: 180px ;
+    /*visibility: hidden ;*/
+  }
+  #display #board {
+
+    height: 130px ;
+    width: 130px ;
+  }
+  #display #board b >i.fa, #display #board b >span {
+
+    font-size: 1.1em ;
+  }
+
+  #display #bs-2, #display #bs-1, #display #bs-0, #display #bs-3 {
+
+    height: 150px ;
+    width: 150px ;
+  }
+  #display #bs-2 {
+
+    left: -95px ;
+  }
+  #display #bs-1 {
+
+    right: -80px ;
+  }
+  #display #bs-0 {
+
+    top: -95px ;
+  }
+  #display #bs-3 {
+
+    bottom: -90px ;
+  }
+}

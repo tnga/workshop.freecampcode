@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="freeCodeCamp simon game challenge">
+    <meta name="author" content="Tindo Ngoufo Arsel">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>simon-game® | tnga</title>
+
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/iui/0.0/iui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+
+    <div id="i-main-block">
+      
+      <div id="display">
+       <!--bs just to design for button-sound-->
+        <button id="bs-0"></button><!--botton-top-->
+        <button id="bs-1"></button><!--botton-right-->
+        <button id="bs-2"></button><!--botton-left-->
+        <button id="bs-3"></button><!--botton-bottom-->
+        
+        <div class="i-block" id="board">
+         <center>
+           <br/>
+           <b><i class="fa fa-2x fa-user"></i> <span id="win-count">0</span></b>
+           <b><i class="fa fa-2x fa-music"></i> <span id="m-count">0</span></b>
+           <br/>
+           <span id="info-winner"></span>
+           <br/>
+           <button id="stop"><i class="fa fa-stop"></i></button>
+           <button id="start"><i class="fa fa-play"></i></button>
+           <button id="mode-strict"><i class="fa fa-ban"></i></button>
+         </center>
+        </div>
+      </div>
+      
+      <div class="i-block st-style" id="footer">
+        <center>
+          <h3>simon®</h3>
+          <small>made with <i class="fa fa-heart" id="with-love" style="color:red"></i> by <a href="https://github.com/tnga" target="_blank">tnga</a></small>
+        </center>
+      </div>
+
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/ijs/partials/i_core.min.js"></script>
+    <script src="bower_components/ijs/partials/i_animation.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+  </body>
+
+</html>
