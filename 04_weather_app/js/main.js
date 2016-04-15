@@ -7,52 +7,42 @@ $(document).ready( function () {
     iJS.animate( $(".i-block>figure>button")[0], "wobble", 13) ;
     showNotification("<b>note:</b> for any other location, use search button.") ;
     
-    var location = {} ;
+    displayError = function(error){console.log(error)} ;
+    if (navigator.geolocation) {
+        
+        var timeoutVal = 10 * 1000 * 1000; //10s
+        var ageVal = 600 * 1000 * 1000;    //10min
+        
+        navigator.geolocation.getCurrentPosition(
+            function (position) { //success
+                
+                showWeatherLocation( position.coords ) ;
+                console.log( position ) ;
+            }, 
+            function (error) {
+                
+                showNotification("<b>Oops!/b> If you have wrong location, use search button.", "warring") ;
+                console.warn( error ) ;
+                
+                getLocationFromIP() ;
+            },
+            { enableHighAccuracy: true, timeout: timeoutVal, maximumAge: ageVal }
+        );
+    }
+    else {
+        
+        showNotification("<b>Oops!/b> Think to update your browser, use search button to find a location.", "warring");
+        console.warn("Geolocation is not supported by this browser");
+        
+        getLocationFromIP() ;
+    }
     
-    /* get the user's location */
-    $.getJSON( "http://ipinfo.io/json")
-    
-    .done( function (loc) {
-        
-        var location = loc ;
-        //ipinfo just provide de country iso code name, so will try to get native country name
-        location.countryName = location.country ;
-        
-        //try to get native country name. this is usefull to have better result from Flickr API
-        $.getJSON( "https://restcountries.eu/rest/v1/name/"+location.country
-        )
-        .done( function (data) {
-            
-            location.countryName = (iJS.isObject( data ) || iJS.isArray( data )) ? data[0].name : location.country ;
-            console.log( data ) ;
-            
-            showPictureFromLoacation( location.city + ", "+ location.countryName ) ;
-        })
-        .fail( function () {
-
-            showNotification( "(country.io) Oops! Connexion error...", "error" ) ;
-            
-            showPictureFromLoacation( location.city + ", "+ location.countryName ) ;
-        }) ;
-        
-       
-        showWeatherLocation( location.city + ", "+ location.country ) ;
-        
-        console.log( loc ) ;
-
-    })
-    .fail( function () {
-        
-        showNotification( "(ipinfo) Oops! Connexion error...", "error" ) ;
-        animateLoader("stop") ;
-        iJS.animate( $(".i-block")[0], "shake") ;
-    }) ;
     
     $("input[name='search-weather']").on("change", function () {
         
         animateLoader("start") ;
         
-        showPictureFromLoacation( this.value ) ;
+        //showPictureFromLoacation( this.value ) ;
         showWeatherLocation( this.value ) ;
     }) ;
     
@@ -99,22 +89,48 @@ function showWeatherDetails (status) {
 }
 
 var _weather = {} ;
+var _location = {} ;
 
+/* get the user's location from his ip address*/
+//use globale variable `_location`
+function getLocationFromIP () {
+    
+    $.getJSON( "http://ipinfo.io/json")
+        .done( function (loc) {
+
+            _location = loc ;
+            //ipinfo just provide de country iso code name, so will try to get native country name
+            _location.countryName = _location.country ;
+
+            showWeatherLocation( _location.city + ", "+ _location.country ) ;
+
+            console.log( loc ) ;
+
+        })
+        .fail( function () {
+
+            showNotification( "(ipinfo) Oops! Connexion error...", "error" ) ;
+            animateLoader("stop") ;
+            iJS.animate( $(".i-block")[0], "shake") ;
+        }) ;
+} 
+
+/*get weather informations and show some of them in target view page*/
+//use globales variables `_location`, `_weather`
 function showWeatherLocation (place) {
     
     showWeatherDetails("hidden") ;
     
-    if (iJS.isString( place )) {
+    if (iJS.isString( place ) || iJS.isObject( place )) {
         
+        var searchParams = {} ;
+        searchParams.units = "metric" ;
+        searchParams.appid = "b4ba2ba099fb66e6e49df3cfdad599df" ;
+        if (iJS.isString( place )) searchParams.q = place ;
+        if (place.longitude) searchParams.lon = place.longitude ;
+        if (place.latitude) searchParams.lat = place.latitude ;
         /* get the user's location weather infos */
-        $.getJSON( "http://api.openweathermap.org/data/2.5/weather",
-            {
-                q: place ,
-                units: "metric" ,
-                appid: "b4ba2ba099fb66e6e49df3cfdad599df"
-                //callback: "JSON_CALLBACK"
-            }
-        )
+        $.getJSON( "http://api.openweathermap.org/data/2.5/weather", searchParams)
         .done( function (data) {
 
             if (iJS.isObject(data.main) && iJS.isSet(data.weather)) {
@@ -127,7 +143,12 @@ function showWeatherLocation (place) {
                 _weather.sunrise = new Date( data.sys.sunrise*1000 ).getTime() ; //time 100 to get millisecond
                 _weather.sunset = new Date( data.sys.sunset*1000 ).getTime() ; //time 100 to get millisecond
                 _weather.fah = Math.round( ( _weather.temp * 9)/5 + 32 ) +" °F";
+                
+                _location.city = data.name ;
+                _location.country = data.sys.country ;
 
+                getCountryInfos( _location.country ) ;
+                
                 $("#weather-details >h4 >img:first-of-type").attr("src", _weather.icon) ;
                 
                 $("#weather-details >p span:nth-child(1) i").text(_weather.cel) ;
@@ -137,8 +158,7 @@ function showWeatherLocation (place) {
                 $("#weather-details >p span:nth-child(5) i").text( new Date(_weather.sunset).toLocaleTimeString()) ;
                 
                 showWeatherDetails("visible") ;
-                animateLoader("stop") ;
-                iJS.animate( $(".i-block")[0], "pulse")
+                iJS.animate( $(".i-block")[0], "pulse") ;
                 
                 //change backgound depending of weather's location conditions
                 if (_weather.des.toLocaleLowerCase() == "rain") {
@@ -195,27 +215,49 @@ function showWeatherLocation (place) {
     }
 }
 
-
-function showPictureFromLoacation (place) {
+//use globale variable `_location`
+function getCountryInfos (country) {
     
-    if (iJS.isString( place )) {
+    if (iJS.isString( country )) {
         
-        $("#weather-details >h4 >span").text( place ) ;
-        
-        /* get an random picture of user's location */
-        $.getJSON( "https://api.flickr.com/services/rest/",
-                  {
+        //try to get native country name. this is usefull to have better result from Flickr API
+        $.getJSON( "https://restcountries.eu/rest/v1/name/"+country)
+            .done( function (data) {
+
+            _location.countryName = (iJS.isArray( data )) ? data[0].name : _location.country ;
+            _location.countryNativeName = (iJS.isObject( data ) || iJS.isArray( data )) ? data[0].nativeName : _location.country ;
+            console.log( data ) ;
+
+            showPictureFromLoacation() ;
+        })
+            .fail( function () {
+
+            showNotification( "(country.io) Oops! Connexion error...", "error" ) ;
+            
+            _location.countryNativeName = "" ;
+            showPictureFromLoacation() ;
+        }) ;
+    }
+}
+
+//use globales variables (_location, ...) 
+function showPictureFromLoacation () {
+    
+    $("#weather-details >h4 >span").text( _location.city + ", "+ _location.countryName ) ;
+
+    /* get an random picture of user's location */
+    $.getJSON( "https://api.flickr.com/services/rest/",
+        {
             method: "flickr.photos.search" ,
             api_key: "3699274559f630654bae279694f54314" ,
-            tags: "city, people, street, rue, ville, " + place ,
-            text: place ,
+            tags: "city, people, street, rue, ville, " + _location.city + ", "+ _location.countryName + ", "+ _location.countryNativeName ,
+            text: _location.city + ", "+ _location.countryName ,
             accuracy: 3 ,
             content_type: 1 ,
             per_page: 70 ,
             format: "json" ,
             nojsoncallback: 1
-        }
-        )
+        })
         .done( function (data) {
 
             if (data.stat === "ok") {
@@ -230,7 +272,7 @@ function showPictureFromLoacation (place) {
                     $(".i-block>figure").css("background-size", "cover") ;
 
                     $(".i-block>figure>figcaption").text( luckyPicInfo.title ) ;
-                    
+
                     /*magnific-popup show lucky picture*/ 
                     $('.i-block>figure').magnificPopup({
                         items: [
@@ -243,7 +285,7 @@ function showPictureFromLoacation (place) {
                         },
                         type: 'image' // this is default type
                     });
-                    
+
                     /*disable parent event propagation to search button to avoid conflit*/ 
                     $(".i-block >figure >button").click(function(e) {
                         e.stopPropagation();
@@ -262,14 +304,15 @@ function showPictureFromLoacation (place) {
 
                 $(".i-block>figure>figcaption").html("<span style='color:red'>Oops! Flickr API connexion error...</span>") ;
             }
-            
-            iJS.animate( $(".i-block>figure")[0], "fade-in") ;
 
+            animateLoader("stop") ;
+            iJS.animate( $(".i-block>figure")[0], "fade-in") ;
+            
             console.log( data ) ;
         })
         .fail(function () {
 
+            animateLoader("stop") ;
             $(".i-block>figure>figcaption").html("<span style='color:red'>Oops! Connexion error...</span>") ;
         }) ;
-    }
 }
