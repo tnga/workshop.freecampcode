@@ -54,6 +54,7 @@
 #weather-details >p >span i {
     
     color: #903a00 ;
+    font-style: normal ;
 }
 
 #loader-zone {

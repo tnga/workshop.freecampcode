@@ -1,4 +1,11 @@
-/* by [tnga](https//github.com/tnga) */
+/* by [tnga](https//github.com/tnga) - 2016
+ *
+ * It use HTML5 geolocalisation API,
+ * if it isn't supported or unable to be used (access denied by user, timeout, ...)
+ * then it use IP address localisation API (like ipinfo.io).
+ * User can manually search for a location.
+ * Results are organised according to Weather API returning data.
+*/
 
 $(document).ready( function () {
     
@@ -7,11 +14,10 @@ $(document).ready( function () {
     iJS.animate( $(".i-block>figure>button")[0], "wobble", 13) ;
     showNotification("<b>note:</b> for any other location, use search button.") ;
     
-    displayError = function(error){console.log(error)} ;
     if (navigator.geolocation) {
         
-        var timeoutVal = 10 * 1000 * 1000; //10s
-        var ageVal = 600 * 1000 * 1000;    //10min
+        var timeoutVal = 45 * 1000 ; //45s
+        var ageVal = 600 * 1000 ;    //10min = 600s
         
         navigator.geolocation.getCurrentPosition(
             function (position) { //success
@@ -21,17 +27,17 @@ $(document).ready( function () {
             }, 
             function (error) {
                 
-                showNotification("<b>Oops!/b> If you have wrong location, use search button.", "warring") ;
+                showNotification("<b>Oops!</b> If you have wrong location, use search button.", "warring") ;
                 console.warn( error ) ;
                 
                 getLocationFromIP() ;
             },
-            { enableHighAccuracy: true, timeout: timeoutVal, maximumAge: ageVal }
+            { timeout: timeoutVal, maximumAge: ageVal, /*enableHighAccuracy: true*/ }
         );
     }
     else {
         
-        showNotification("<b>Oops!/b> Think to update your browser, use search button to find a location.", "warring");
+        showNotification("<b>Oops!</b> Think to update your browser, use search button to find a location.", "warring");
         console.warn("Geolocation is not supported by this browser");
         
         getLocationFromIP() ;
@@ -42,7 +48,6 @@ $(document).ready( function () {
         
         animateLoader("start") ;
         
-        //showPictureFromLoacation( this.value ) ;
         showWeatherLocation( this.value ) ;
     }) ;
     
@@ -137,7 +142,8 @@ function showWeatherLocation (place) {
 
                 _weather.temp = Math.round(data.main.temp);
                 _weather.cel = Math.round(data.main.temp) +" °C";
-                _weather.des = data.weather[0].main;
+                _weather.des = data.weather[0].description;
+                _weather.cond = data.weather[0].main;
                 _weather.wspeed = data.wind.speed +" m/s";
                 _weather.icon = "http://openweathermap.org/img/w/"+data.weather[0].icon +".png";
                 _weather.sunrise = new Date( data.sys.sunrise*1000 ).getTime() ; //time 100 to get millisecond
@@ -161,15 +167,15 @@ function showWeatherLocation (place) {
                 iJS.animate( $(".i-block")[0], "pulse") ;
                 
                 //change backgound depending of weather's location conditions
-                if (_weather.des.toLocaleLowerCase() == "rain") {
+                if (_weather.cond.toLocaleLowerCase() == "rain") {
                     
                     $("body").css("background", "url(img/weather_onrain.jpg) no-repeat center fixed") ;
                 }
-                else if (_weather.des.toLocaleLowerCase() == "snow") {
+                else if (_weather.cond.toLocaleLowerCase() == "snow") {
                     
                     $("body").css("background", "url(img/weather_winter.jpg) no-repeat left fixed") ;
                 }
-                else if (_weather.des.toLocaleLowerCase() == "thunderstom") {
+                else if (_weather.cond.toLocaleLowerCase() == "thunderstorm") {
                     
                     $("body").css("background", "url(img/weather_thunderstom.jpg) no-repeat left fixed") ;
                 }
@@ -220,41 +226,56 @@ function getCountryInfos (country) {
     
     if (iJS.isString( country )) {
         
-        //try to get native country name. this is usefull to have better result from Flickr API
+        //try to get common country name. this is usefull to have better result from Flickr API
         $.getJSON( "https://restcountries.eu/rest/v1/name/"+country)
             .done( function (data) {
 
-            _location.countryName = (iJS.isArray( data )) ? data[0].name : _location.country ;
-            _location.countryNativeName = (iJS.isObject( data ) || iJS.isArray( data )) ? data[0].nativeName : _location.country ;
+            //set default value for precaution
+            _location.countryName =  _location.country ;
+            _location.demonym =  "" ;
             console.log( data ) ;
+            
+            if (iJS.isArray( data )) {
+                
+                for (var i=0; i<data.length; i++) {
+                  
+                    if (data[i].alpha2Code.toLowerCase() === _location.country.toLowerCase()) {
+                        _location.countryName = data[i].name ;
+                        _location.demonym =  data[i].demonym ;
+                        break ;
+                    }
+                }
+            }
 
+            $("#weather-details >h4 >span").text( _location.city + ", "+ _location.countryName ) ;
+            
             showPictureFromLoacation() ;
         })
             .fail( function () {
 
             showNotification( "(country.io) Oops! Connexion error...", "error" ) ;
             
-            _location.countryNativeName = "" ;
+            $("#weather-details >h4 >span").text( _location.city + ", "+ _location.countryName ) ;
+            
+            _location.demonym = "" ;
             showPictureFromLoacation() ;
         }) ;
     }
 }
 
+/* get an random picture of user's location */
 //use globales variables (_location, ...) 
 function showPictureFromLoacation () {
-    
-    $("#weather-details >h4 >span").text( _location.city + ", "+ _location.countryName ) ;
 
-    /* get an random picture of user's location */
     $.getJSON( "https://api.flickr.com/services/rest/",
         {
             method: "flickr.photos.search" ,
             api_key: "3699274559f630654bae279694f54314" ,
-            tags: "city, people, street, rue, ville, " + _location.city + ", "+ _location.countryName + ", "+ _location.countryNativeName ,
+            tags: "city, people, street, rue, ville, " + _location.city + ", "+ _location.countryName + ", "+ _location.demonym ,
             text: _location.city + ", "+ _location.countryName ,
             accuracy: 3 ,
             content_type: 1 ,
-            per_page: 70 ,
+            per_page: 100 ,
             format: "json" ,
             nojsoncallback: 1
         })
