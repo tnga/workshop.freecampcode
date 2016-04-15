@@ -1,5 +1,5 @@
-/* Original AI by : MutantSpore <http://codepen.io/MutantSpore>
- * Adjust, little clean and perform by : tnga <https://github.com/tnga>
+/* thanks to : MutantSpore <http://codepen.io/MutantSpore>
+ * by : tnga <https://github.com/tnga> - 2016
 */
 
 $(document).ready( function() {
