@@ -555,6 +555,13 @@ $(document).ready( function() {
                 playSound( hardSound ) ;
         }
     });
+    
+    $('input[name="theme"]').on("change", function() {
+        if (this.checked)
+            $("body, .i-block, #display >dialog").addClass("dark-theme") ;
+        else 
+            $("body, .i-block, #display >dialog").removeClass("dark-theme") ;
+    });
 
     $('#display >dialog').click(function() {
         
