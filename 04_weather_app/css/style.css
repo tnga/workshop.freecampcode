@@ -24,12 +24,12 @@
     text-shadow: 0px 0px 1px cyan ;
     cursor: auto ;
 }
-.i-block >figure >button input {
+.i-block >figure >.i-btn input {
     
     display: none ;
     margin-right: 10px ;
 }
-.i-block >figure >button:hover input, .i-block >figure >button input:focus {
+.i-block >figure >.i-btn:hover input, .i-block >figure >.i-btn input:focus {
     
     display: inline-block ;
 }

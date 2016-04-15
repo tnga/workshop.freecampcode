@@ -287,7 +287,7 @@ function showPictureFromLoacation () {
                     });
 
                     /*disable parent event propagation to search button to avoid conflit*/ 
-                    $(".i-block >figure >button").click(function(e) {
+                    $(".i-block >figure >.i-btn").click(function(e) {
                         e.stopPropagation();
                     }); 
                     /*disable parent event propagation to search button to avoid conflit*/ 
