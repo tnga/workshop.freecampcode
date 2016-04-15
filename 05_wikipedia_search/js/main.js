@@ -75,7 +75,7 @@ $(document).ready( function () {
     $("#search-block input[name='wiki-search']").triggerHandler("change") ;
   }) ;
   //@NOTE uncomment this to enable search action on button's click.
-  /*$("#search-block >button").on("click", function () {
+  /*$("#search-block >i-btn").on("click", function () {
     
     $("#search-block input[name='wiki-search']").triggerHandler("change") ;
   }) ;

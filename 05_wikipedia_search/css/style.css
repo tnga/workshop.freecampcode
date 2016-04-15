@@ -11,17 +11,17 @@
   margin-bottom: 15px ;
   font-weight: normal ;
 }
-#search-block button {
+#search-block .i-btn {
   
   min-width: 230px ;
   width: 70% ;
   max-width: 500px ;
 }
-#search-block button i {
+#search-block .i-btn i {
   
   font-size: 1.3em ;
 }
-#search-block button input[type="search"] {
+#search-block .i-btn input[type="search"] {
   
   margin-right: 10px ;
   margin-left: 0px ;
