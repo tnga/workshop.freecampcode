@@ -1,0 +1,110 @@
+
+$vendor-color: #381F0B ;
+$light-color: white ;
+$dark-color: #3d3d3d ;
+
+#display {
+    
+    margin-top: 59px ;
+    
+    figure {
+        max-height: 450px ;
+        min-height: 200px ;
+        overflow: hidden ;
+        position: relative ;
+        cursor: pointer ;
+        
+        >span:first-of-type {
+            color: white ;
+            padding: 3px 5px ;
+            border-radius: 3px ;
+            background: $vendor-color ;
+        }
+        
+        >img {
+            display: block;
+            width: 100%;
+            height: auto ;
+            max-height: 300px ;
+            margin-bottom: 0px ;
+        }
+        
+        figcaption {
+            
+            >a:first-of-type {
+                padding: 5px 3px ;
+                display: block ;
+                position: absolute ;
+                top: 50% ;
+                width: 75% ;
+                background-color: $vendor-color ;
+                background-color: rgba($vendor-color, 0.7) ;
+                color: $light-color ;
+            }
+            
+            .brownie-info {
+                
+                >small, span {
+                    display: block ;
+                }
+                >small {
+                    color: $vendor-color ;
+                }
+                >small {
+                   text-align: center ;
+                }
+                >span:nth-child(even) {
+                    font-size: 0.9em ;
+                    border-bottom: 1px solid $dark-color ;
+                    color: $dark-color ;
+                }
+                >span:nth-child(odd) {
+                    text-align: right;
+                }
+            }
+        }
+    }
+} 
+
+.i-block {
+    
+    background-color: $light-color ;
+}
+
+h3.i-block, h3.i-block.sb-style {
+
+    margin-top: 0px ;
+    padding-top: 3px ;
+    padding-bottom: 5px ;
+    text-align: center ;
+    position: fixed ;
+    top: 0px ;
+    left: 0px ;
+    min-width: 280px ;
+    width: 100% ;
+    z-index: 1500;
+    
+    >span {
+        display: block ;
+        margin-bottom: 5px ;
+        
+        a {
+            font-family: monospace, "andale mono", _Andale_Mono ;
+            color: $vendor-color ;
+        }
+    }
+}
+
+body {
+    background: url(../bg6.png);
+}
+
+.col-1-of-4 {
+
+    @media (max-width: 800px) {
+        width: 48%;
+    }
+    @media (max-width: 420px) {
+        width: 98%;
+    }
+}

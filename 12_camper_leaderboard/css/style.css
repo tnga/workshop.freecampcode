@@ -1,0 +1,92 @@
+#display {
+  margin-top: 59px;
+}
+#display figure {
+  max-height: 450px;
+  min-height: 200px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+#display figure > span:first-of-type {
+  color: white;
+  padding: 3px 5px;
+  border-radius: 3px;
+  background: #381F0B;
+}
+#display figure > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  margin-bottom: 0px;
+}
+#display figure figcaption > a:first-of-type {
+  padding: 5px 3px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 75%;
+  background-color: #381F0B;
+  background-color: rgba(56, 31, 11, 0.7);
+  color: white;
+}
+#display figure figcaption .brownie-info > small, #display figure figcaption .brownie-info span {
+  display: block;
+}
+#display figure figcaption .brownie-info > small {
+  color: #381F0B;
+}
+#display figure figcaption .brownie-info > small {
+  text-align: center;
+}
+#display figure figcaption .brownie-info > span:nth-child(even) {
+  font-size: 0.9em;
+  border-bottom: 1px solid #3d3d3d;
+  color: #3d3d3d;
+}
+#display figure figcaption .brownie-info > span:nth-child(odd) {
+  text-align: right;
+}
+
+.i-block {
+  background-color: white;
+}
+
+h3.i-block, h3.i-block.sb-style {
+  margin-top: 0px;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  text-align: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  min-width: 280px;
+  width: 100%;
+  z-index: 1500;
+}
+h3.i-block > span, h3.i-block.sb-style > span {
+  display: block;
+  margin-bottom: 5px;
+}
+h3.i-block > span a, h3.i-block.sb-style > span a {
+  font-family: monospace, "andale mono", _Andale_Mono;
+  color: #381F0B;
+}
+
+body {
+  background: url(../bg6.png);
+}
+
+@media (max-width: 800px) {
+  .col-1-of-4 {
+    width: 48%;
+  }
+}
+@media (max-width: 420px) {
+  .col-1-of-4 {
+    width: 98%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
