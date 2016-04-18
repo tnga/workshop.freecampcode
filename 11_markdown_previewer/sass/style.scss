@@ -1,0 +1,39 @@
+@import '../lib/iui/0.0/src/sass/i_skins/default.scss' ;
+
+$font-path: "../lib/iui/0.0/fonts" ;
+@import '../lib/iui/0.0/src/sass/i_font_def.scss' ;
+@import '../lib/iui/0.0/src/sass/i_base.scss' ;
+
+.editor-toolbar {
+    
+    a {  
+        &.active, &:hover {
+
+            @extend .i-btn.hovered ; 
+            color: white!important ;
+            outline: none ;
+            border: 1px solid white;
+        }
+    }
+} 
+
+.editor-preview, .editor-preview-side {
+    
+    pre {
+        background: #181818 ;
+        padding: 7px 10px ;
+        
+        code {
+            background: transparent ;
+            padding: 0px ;
+        }
+    }
+    
+    code {
+        background: #808080;
+        color: white ;
+        font-family: "andale mono", _Andale_Mono, monospace ;
+        font-size: 0.9em ;
+        padding: 3px 5px ;
+    }
+}
