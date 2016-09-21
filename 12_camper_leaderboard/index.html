@@ -54,6 +54,7 @@
         handleChange( event ) {
         
           if (event.target.value !== "recent") this.setState( {isSortRecent: false}) ;
+          else this.setState( {isSortRecent: true}) ;
           this.props.sortTableNum( event.target.value );
         }
       }
