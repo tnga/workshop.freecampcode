@@ -1,4 +1,4 @@
-/* by [tnga](https//github.com/tnga) - 2016
+/* by [tnga](https://github.com/tnga) - 2016
  *
  * It use HTML5 geolocalisation API,
  * if it isn't supported or unable to be used (access denied by user, timeout, ...)
